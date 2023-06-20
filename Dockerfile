@@ -44,7 +44,7 @@ RUN echo @testing https://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk
     libjpeg-turbo-dev \
     freetype-dev \
     libxslt-dev \
-    gcc 
+    gcc
 
 RUN apk add --no-cache --virtual .sys-deps \
     musl-dev \
@@ -70,9 +70,9 @@ RUN apk add --no-cache --virtual .sys-deps \
       --with-jpeg && \
     docker-php-ext-install gd && \
      pip install --upgrade pip && \
-    docker-php-ext-install pdo_mysql mysqli pdo_sqlite pgsql pdo_pgsql exif intl xsl soap zip && \
+    docker-php-ext-install pdo_mysql mysqli pdo_sqlite pgsql pdo_pgsql exif intl xsl soap zip session xml zip simplexml pcntl gd fileinfo && \
     pecl install -o -f xdebug && \
-    pecl install -o -f redis && \ 
+    pecl install -o -f redis && \
     pecl install -o -f mongodb && \
     echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini && \
     echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongodb.ini && \
@@ -143,8 +143,13 @@ ADD scripts/letsencrypt-setup /usr/bin/letsencrypt-setup
 ADD scripts/letsencrypt-renew /usr/bin/letsencrypt-renew
 RUN chmod 755 /usr/bin/pull && chmod 755 /usr/bin/push && chmod 755 /usr/bin/letsencrypt-setup && chmod 755 /usr/bin/letsencrypt-renew && chmod 755 /start.sh
 
+# Laravel config
+# ENV APP_ENV local
+# ENV APP_DEBUG true
+# ENV LOG_CHANNEL stderr
+
 # copy in code
-ADD LaravelBase/public/ /var/www/html/
+ADD src/ /var/www/html/
 ADD errors/ /var/www/errors
 
 

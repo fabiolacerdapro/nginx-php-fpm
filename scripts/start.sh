@@ -3,7 +3,7 @@
 # Disable Strict Host checking for non interactive git clones
 
 mkdir -p -m 0700 /root/.ssh
-# Prevent config files from being filled to infinity by force of stop and restart the container 
+# Prevent config files from being filled to infinity by force of stop and restart the container
 echo "" > /root/.ssh/config
 echo -e "Host *\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config
 
@@ -225,9 +225,11 @@ if [ -z "$SKIP_COMPOSER" ]; then
         if [ "$APPLICATION_ENV" == "development" ]; then
             composer global require hirak/prestissimo
             composer install --working-dir=/var/www/html
+            composer update --working-dir=/var/www/html
         else
             composer global require hirak/prestissimo
             composer install --no-dev --working-dir=/var/www/html
+            composer update --no-dev --working-dir=/var/www/html
         fi
     fi
 fi
