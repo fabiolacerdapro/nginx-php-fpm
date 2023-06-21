@@ -234,6 +234,12 @@ if [ -z "$SKIP_COMPOSER" ]; then
     fi
 fi
 
+echo "PHP Artisan Optimizer..."
+php artisan optimize
+
+echo "Clear cache..."
+php artisan cache:clear
+
 echo "Caching config..."
 php artisan config:cache
 
@@ -242,6 +248,12 @@ php artisan route:cache
 
 echo "Running migrations..."
 php artisan migrate --force
+
+echo "NPM Run..."
+npm install
+npm run build
+
+echo "START!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 
 # Start supervisord and services
 exec /usr/bin/supervisord -n -c /etc/supervisord.conf
