@@ -253,7 +253,7 @@ echo "NPM Run..."
 npm install
 npm run build
 
-echo "START!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+echo "-----------------START!!!---------------------"
 
 # Start supervisord and services
 exec /usr/bin/supervisord -n -c /etc/supervisord.conf
