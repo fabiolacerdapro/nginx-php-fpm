@@ -147,6 +147,10 @@ RUN chmod 755 /usr/bin/pull && chmod 755 /usr/bin/push && chmod 755 /usr/bin/let
 # ENV APP_ENV local
 # ENV APP_DEBUG true
 # ENV LOG_CHANNEL stderr
+# ENV APP_NAME="Laravel 10"
+# ENV APP_ENV=local
+# ENV APP_KEY=base64:iW+0qSxKkQN3WTtx5YVI2zZrs9Kn1W6ShC1dYJwtr/M=
+
 
 # copy in code
 ADD src/ /var/www/html/
